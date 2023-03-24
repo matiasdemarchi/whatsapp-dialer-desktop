@@ -34,7 +34,7 @@ class Aplication:
 
     def importar(self):
         # Abrimos un CSV con prefijos internacionales
-        with open("prefijos.csv", newline="") as table:
+        with open("prefijos.csv", newline="", encoding='UTF-8') as table:
             self.countries = csv.reader(table)
             # Scroll de la listbox
             self.scroll = Scrollbar(self.app, orient=VERTICAL)
@@ -52,7 +52,7 @@ class Aplication:
 
     def onselect(self, event):
         # Volvemos a abrir el CSV
-        with open("prefijos.csv", newline="") as table:
+        with open("prefijos.csv", newline="", encoding='UTF-8') as table:
             self.countries = csv.reader(table)
             self.prefixes = []  # Creamos una lista para cargar los prefijos
             next(self.countries)  # Salteamos encabezado

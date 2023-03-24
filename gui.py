@@ -15,21 +15,24 @@ class Aplication():
         self.listpaises.bind("<<ListboxSelect>>", self.onselect)
         #Solicitamos el número de WhatsApp, luego de elegir país
         self.solicitud = ttk.Label(self.app, text='Ingrese el número de WhatsApp')
-        self.solicitud.grid(column=1, row=0)
+        self.solicitud.grid(column=2, row=0)
         #Creamos variable para el entry
         self.numero = StringVar()
         self.entrynumero = ttk.Entry(self.app, textvariable=self.numero, width=20)
-        self.entrynumero.grid(column=1, row=1)
+        self.entrynumero.grid(column=2, row=1)
 
         self.enviar = ttk.Button(self.app, text='Escribir', command=self.lanzar)
-        self.enviar.grid(column=1, row=2)
+        self.enviar.grid(column=2, row=2)
         self.app.mainloop()
 
     def importar(self):
         with open('prefijos.csv', newline='') as table:
+            self.scroll = Scrollbar(self.app, orient=VERTICAL)
             self.countries = csv.reader(table)
-            self.listpaises = Listbox(self.app)
+            self.listpaises = Listbox(self.app, yscrollcommand=self.scroll.set)
             self.listpaises.grid(column=0, row=1)
+            self.scroll.configure(command=self.listpaises.yview)
+            self.scroll.grid(column=1, row=1, sticky='NS')
             next(self.countries)
             for row in self.countries:
                 self.country = row[0]

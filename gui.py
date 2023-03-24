@@ -49,8 +49,8 @@ class Aplication():
             return self.code
 
     def lanzar(self):
-        self.numero = self.numero.get()
-        webbrowser.open("https://api.whatsapp.com/send?phone="+self.code+self.numero)
+        self.marcar = self.numero.get()
+        webbrowser.open("https://api.whatsapp.com/send?phone="+self.code+self.marcar)
 
 
 
